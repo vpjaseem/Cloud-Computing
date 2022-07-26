@@ -1,1 +1,7 @@
+#Adding IIS and PHP Modules
+Add-WindowsFeature -Name web-server
+Install-WindowsFeature web-Mgmt-Console
 
+#Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
+Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
+Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"

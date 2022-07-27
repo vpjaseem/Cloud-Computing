@@ -20,12 +20,13 @@ Install-WindowsFeature Web-CGI
 
 
 ##Add Management Tools
+Install-WindowsFeature Web-Mgmt-Tools
 Install-WindowsFeature Web-Mgmt-Console     
 Install-WindowsFeature Web-Mgmt-Compat      
 Install-WindowsFeature Web-Metabase         
-Install-WindowsFeature Web-Lgcy-Mgmt-Console
+#Install-WindowsFeature Web-Lgcy-Mgmt-Console
 Install-WindowsFeature Web-Lgcy-Scripting   
-Install-WindowsFeature Web-WMI              
+#Install-WindowsFeature Web-WMI              
 Install-WindowsFeature Web-Scripting-Tools  
 Install-WindowsFeature Web-Mgmt-Service     
 

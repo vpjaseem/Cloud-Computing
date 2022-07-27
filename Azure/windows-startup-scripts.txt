@@ -35,3 +35,15 @@ Install-WindowsFeature Web-Mgmt-Service
 Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
 Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+
+#Download, Unzip and Install VC++ 2015-2019
+$url = "https://raw.githubusercontent.com/vpjaseem/Cloud-Computing/main/Azure/Downloads/VC_Redistributable_2015_2019.zip"
+$output = "$home\Downloads\VC_Redistributable_2015_2019.zip"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+Expand-Archive -LiteralPath $home\Downloads\VC_Redistributable_2015_2019.zip -DestinationPath $home\Downloads\VC_Redistributable_2015_2019_Extracted
+.$home\Downloads\VC_Redistributable_2015_2019_Extracted\VC_Redistributable_2015_2019.exe /quiet
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+
+

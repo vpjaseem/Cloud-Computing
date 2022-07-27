@@ -52,6 +52,6 @@ $output = "$home\Downloads\php-7-4.zip"
 $start_time = Get-Date
 Invoke-WebRequest -Uri $url -OutFile $output
 Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\7-5'
+Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 

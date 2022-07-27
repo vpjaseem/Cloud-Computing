@@ -55,3 +55,16 @@ Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
+
+
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+###OPTIONAL###
+#Download and Install Web Platform Installer
+$url = "https://go.microsoft.com/fwlink/?LinkId=287166"
+$output = "$home\Downloads\Web-Platform-Installer.msi"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+
+#Installing Web Platform Installed
+.$home\Downloads\Web-Platform-Installer.msi /quiet

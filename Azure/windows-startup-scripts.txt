@@ -46,4 +46,12 @@ Expand-Archive -LiteralPath $home\Downloads\VC_Redistributable_2015_2019.zip -De
 .$home\Downloads\VC_Redistributable_2015_2019_Extracted\VC_Redistributable_2015_2019.exe /quiet
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
+#Download, Unzip PHP 7.4
+$url = "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip"
+$output = "$home\Downloads\php-7-4.zip"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\7-5'
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 

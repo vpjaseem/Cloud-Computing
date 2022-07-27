@@ -1,7 +1,37 @@
-#Adding IIS and PHP Modules
-Add-WindowsFeature -Name web-server
-Install-WindowsFeature web-Mgmt-Console
 
+#Adding IIS and PHP Modules
+
+##Install IIS
+Install-WindowsFeature web-server
+
+##Add Security Features
+Install-WindowsFeature Web-Basic-Auth
+Install-WindowsFeature Web-CertProvider
+Install-WindowsFeature Web-Client-Auth 
+Install-WindowsFeature Web-Digest-Auth 
+Install-WindowsFeature Web-Cert-Auth   
+Install-WindowsFeature Web-IP-Security 
+Install-WindowsFeature Web-Url-Auth    
+Install-WindowsFeature Web-Windows-Auth
+
+##Add Application Development Features
+Install-WindowsFeature Web-App-Dev
+Install-WindowsFeature Web-CGI
+
+
+##Add Management Tools
+Install-WindowsFeature Web-Mgmt-Console     
+Install-WindowsFeature Web-Mgmt-Compat      
+Install-WindowsFeature Web-Metabase         
+Install-WindowsFeature Web-Lgcy-Mgmt-Console
+Install-WindowsFeature Web-Lgcy-Scripting   
+Install-WindowsFeature Web-WMI              
+Install-WindowsFeature Web-Scripting-Tools  
+Install-WindowsFeature Web-Mgmt-Service     
+
+#Note: 'Get-WindowsFeature' used to list out all instaleld features
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 #Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
 Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
 Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x

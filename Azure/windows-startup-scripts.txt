@@ -31,10 +31,6 @@ Install-WindowsFeature Web-Mgmt-Service
 
 #Note: 'Get-WindowsFeature' used to list out all instaleld features
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
-#Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
-Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
-Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
-#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Download, Unzip and Install VC++ 2015-2019
 $url = "https://raw.githubusercontent.com/vpjaseem/Cloud-Computing/main/Azure/Downloads/VC_Redistributable_2015_2019.zip"
@@ -59,11 +55,17 @@ Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Pro
 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 ###OPTIONAL###
+#Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
+Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
+Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+
 #Download and Install Web Platform Installer
 $url = "https://go.microsoft.com/fwlink/?LinkId=287166"
 $output = "$home\Downloads\Web-Platform-Installer.msi"
 $start_time = Get-Date
 Invoke-WebRequest -Uri $url -OutFile $output
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 
 #Installing Web Platform Installed

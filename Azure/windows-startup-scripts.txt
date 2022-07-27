@@ -71,8 +71,7 @@ $url = "https://go.microsoft.com/fwlink/?LinkId=287166"
 $output = "$home\Downloads\Web-Platform-Installer.msi"
 $start_time = Get-Date
 Invoke-WebRequest -Uri $url -OutFile $output
-#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-
 #Installing Web Platform Installed
 .$home\Downloads\Web-Platform-Installer.msi /quiet
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x

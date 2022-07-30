@@ -74,17 +74,20 @@ Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recur
 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 ###OPTIONAL###
+
 #Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
-Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
-Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
-#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+#Remove the '#' from below lines
+#Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
+#Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
+#########
 
 #Download and Install Web Platform Installer
-$url = "https://go.microsoft.com/fwlink/?LinkId=287166"
-$output = "$home\Downloads\Web-Platform-Installer.msi"
-$start_time = Get-Date
-Invoke-WebRequest -Uri $url -OutFile $output
-Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+#Remove the '#' from below lines
+#$url = "https://go.microsoft.com/fwlink/?LinkId=287166"
+#$output = "$home\Downloads\Web-Platform-Installer.msi"
+#$start_time = Get-Date
+#Invoke-WebRequest -Uri $url -OutFile $output
+#Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 #Installing Web Platform Installed
-.$home\Downloads\Web-Platform-Installer.msi /quiet
-#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+#.$home\Downloads\Web-Platform-Installer.msi /quiet
+######

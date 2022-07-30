@@ -58,6 +58,19 @@ cd C:\Windows\System32\inetsrv
 .\AppCmd set config -section:system.webServer/fastCgi /+"[fullPath='C:\Program Files\iis express\PHP\v7.4\php-cgi.exe'].environmentVariables.[name='PHP_FCGI_MAX_REQUESTS',value='10000']" /commit:apphost
 .\AppCmd set config -section:system.webServer/handlers /+"[name='PHP-FastCGI2',path='*.php',verb='GET,HEAD,POST',modules='FastCgiModule',scriptProcessor='C:\Program Files\iis express\PHP\v7.4\php-cgi.exe',resourceType='Either',requireAccess='Script']" /commit:apphost
 Add-WebConfiguration //DefaultDocument/Files -AtIndex 0 -Value @{Value="index.php"}
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+
+#Download the Web App file and move to C:\inetpub\wwwroot\
+$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
+$output = "$home\Downloads\php-web-app.zip"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
+cd C:\inetpub\wwwroot\az-php-web-app-main
+Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
+cd C:\inetpub\wwwroot\
+Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 ###OPTIONAL###

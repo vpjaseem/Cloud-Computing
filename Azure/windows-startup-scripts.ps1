@@ -82,16 +82,16 @@ Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recur
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 #Download the Web App file and move to C:\inetpub\wwwroot\
 
-$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
-$output = "$home\Downloads\php-web-app.zip"
-$start_time = Get-Date
-Invoke-WebRequest -Uri $url -OutFile $output
-Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
-cd C:\inetpub\wwwroot\az-php-web-app-main
-Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
-cd C:\inetpub\wwwroot\
-Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
+#$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
+#$output = "$home\Downloads\php-web-app.zip"
+#$start_time = Get-Date
+#Invoke-WebRequest -Uri $url -OutFile $output
+#Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+#Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
+#cd C:\inetpub\wwwroot\az-php-web-app-main
+#Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
+#cd C:\inetpub\wwwroot\
+#Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Allow http Port 80 inbound in Windows Firewall (Not Mandatory)

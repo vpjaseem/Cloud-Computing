@@ -41,6 +41,10 @@ Invoke-WebRequest -Uri $url -OutFile $output
 Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 Expand-Archive -LiteralPath $home\Downloads\VC_Redistributable_2015_2019.zip -DestinationPath $home\Downloads\VC_Redistributable_2015_2019_Extracted
 .$home\Downloads\VC_Redistributable_2015_2019_Extracted\VC_Redistributable_2015_2019.exe /quiet
+
+#$Path = $env:TEMP; $Installer = "VC_Redistributable_2015_2019.exe"; Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/VC_Redistributable_2015_2019.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+#$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Download, Unzip PHP 7.4

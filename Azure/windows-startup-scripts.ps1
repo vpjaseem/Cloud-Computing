@@ -33,13 +33,13 @@ Install-WindowsFeature Web-Mgmt-Service
 #Note: 'Get-WindowsFeature' used to list out all instaleld features
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 #Download, Unzip and Install VC++ 2015-2019
-#$Path = $env:TEMP; $Installer = "VC_Redistributable_2015_2019.exe"; Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/VC_Redistributable_2015_2019.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+$Path = $env:TEMP; $Installer = "VC_Redistributable_2015_2019.exe"; Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/VC_Redistributable_2015_2019.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
 
 #Download, Unzip PHP 7.4
 $Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'; Remove-Item $Path\$Installer
 
 #Download, and Install Google Chrome
-#$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Configure PHP on IIS, Set Dorectories and Files
@@ -51,12 +51,7 @@ Add-WebConfiguration //DefaultDocument/Files -AtIndex 0 -Value @{Value="index.ph
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Download the Web App file and move to C:\inetpub\wwwroot\
-$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
-$output = "$home\Downloads\php-web-app.zip"
-$start_time = Get-Date
-Invoke-WebRequest -Uri $url -OutFile $output
-Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
+$Path = $env:TEMP; $Installer = "az-php-web-app.zip";Invoke-WebRequest "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\inetpub\wwwroot'; Remove-Item $Path\$Installer
 cd C:\inetpub\wwwroot\az-php-web-app-main
 Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
 cd C:\inetpub\wwwroot\
@@ -85,6 +80,20 @@ Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recur
 #Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'
 #$Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'; Remove-Item $Path\$Installer
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+#Download the Web App file and move to C:\inetpub\wwwroot\
+
+$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
+$output = "$home\Downloads\php-web-app.zip"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
+cd C:\inetpub\wwwroot\az-php-web-app-main
+Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
+cd C:\inetpub\wwwroot\
+Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+
 #Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
 
 #Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"

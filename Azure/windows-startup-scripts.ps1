@@ -32,28 +32,14 @@ Install-WindowsFeature Web-Mgmt-Service
 
 #Note: 'Get-WindowsFeature' used to list out all instaleld features
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
-
 #Download, Unzip and Install VC++ 2015-2019
-$url = "https://raw.githubusercontent.com/vpjaseem/Cloud-Computing/main/Azure/Downloads/VC_Redistributable_2015_2019.zip"
-$output = "$home\Downloads\VC_Redistributable_2015_2019.zip"
-$start_time = Get-Date
-Invoke-WebRequest -Uri $url -OutFile $output
-Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-Expand-Archive -LiteralPath $home\Downloads\VC_Redistributable_2015_2019.zip -DestinationPath $home\Downloads\VC_Redistributable_2015_2019_Extracted
-.$home\Downloads\VC_Redistributable_2015_2019_Extracted\VC_Redistributable_2015_2019.exe /quiet
-
 #$Path = $env:TEMP; $Installer = "VC_Redistributable_2015_2019.exe"; Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/VC_Redistributable_2015_2019.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
-#$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
-
-#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Download, Unzip PHP 7.4
-$url = "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip"
-$output = "$home\Downloads\php-7-4.zip"
-$start_time = Get-Date
-Invoke-WebRequest -Uri $url -OutFile $output
-Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
-Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'
+$Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'; Remove-Item $Path\$Installer
+
+#Download, and Install Google Chrome
+#$Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Configure PHP on IIS, Set Dorectories and Files
@@ -77,16 +63,35 @@ cd C:\inetpub\wwwroot\
 Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
-###OPTIONAL###
+###OPTIONAL####Remove the '#' from below lines
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+#Download, Unzip and Install VC++ 2015-2019
 
+#$url = "https://raw.githubusercontent.com/vpjaseem/Cloud-Computing/main/Azure/Downloads/VC_Redistributable_2015_2019.zip"
+#$output = "$home\Downloads\VC_Redistributable_2015_2019.zip"
+#$start_time = Get-Date
+#Invoke-WebRequest -Uri $url -OutFile $output
+#Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+#Expand-Archive -LiteralPath $home\Downloads\VC_Redistributable_2015_2019.zip -DestinationPath $home\Downloads\VC_Redistributable_2015_2019_Extracted
+#.$home\Downloads\VC_Redistributable_2015_2019_Extracted\VC_Redistributable_2015_2019.exe /quiet
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
+#Download, Unzip PHP 7.4
+
+#$url = "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip"
+#$output = "$home\Downloads\php-7-4.zip"
+#$start_time = Get-Date
+#Invoke-WebRequest -Uri $url -OutFile $output
+#Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+#Expand-Archive -LiteralPath $home\Downloads\php-7-4.zip -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'
+#$Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.com/vpjaseem/Cloud-Computing/raw/main/Azure/Downloads/php-7.4.13-nts-Win32-VC15-x64.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\Program Files\iis express\PHP\v7.4'; Remove-Item $Path\$Installer
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 #Allow http Port 80 inbound in Windows Firewall (Not Mandatory)
-#Remove the '#' from below lines
+
 #Enable-NetFirewallRule -DisplayName "BranchCache Content Retrieval (HTTP-In)"
 #Enable-NetFirewallRule -DisplayName "BranchCache Hosted Cache Server (HTTP-In)"
-#########
-
+#---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 #Download and Install Web Platform Installer
-#Remove the '#' from below lines
+
 #$url = "https://go.microsoft.com/fwlink/?LinkId=287166"
 #$output = "$home\Downloads\Web-Platform-Installer.msi"
 #$start_time = Get-Date

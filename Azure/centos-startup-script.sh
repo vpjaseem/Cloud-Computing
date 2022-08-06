@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo yum update -y
+#sudo yum update -y
 sudo yum install httpd -y
 sudo yum install php -y
 sudo chmod 777 /$home/var/www/html/

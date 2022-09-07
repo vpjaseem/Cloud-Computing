@@ -40,6 +40,9 @@ $Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.
 
 #Download, and Install Google Chrome
 $Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
+
+#Download, and Install Notepad++
+$Path = $env:TEMP; $Installer = "notepad_pp_installer.exe"; Invoke-WebRequest "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.5/npp.8.4.5.Installer.x64.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer /S -NoNewWindow -Wait -PassThru; Remove-Item $Path\$Installer
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Configure PHP on IIS, Set Dorectories and Files

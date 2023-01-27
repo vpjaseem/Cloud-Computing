@@ -42,7 +42,17 @@ $Path = $env:TEMP; $Installer = "php-7-4.zip";Invoke-WebRequest "https://github.
 $Path = $env:TEMP; $Installer = "chrome_installer.exe"; Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/silent /install" -Verb RunAs -Wait; Remove-Item $Path\$Installer
 
 #Download, and Install Notepad++
-$Path = $env:TEMP; $Installer = "notepad_pp_installer.exe"; Invoke-WebRequest "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.5/npp.8.4.5.Installer.x64.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer /S -NoNewWindow -Wait -PassThru; Remove-Item $Path\$Installer
+$Path = $env:TEMP; $Installer = "notepad_pp_installer.exe"; Invoke-WebRequest "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.8/npp.8.4.8.Installer.x64.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer /S -NoNewWindow -Wait -PassThru; Remove-Item $Path\$Installer
+
+#Download, and Install WinRAR
+$Path = $env:TEMP; $Installer = "winRAR.exe"; Invoke-WebRequest "https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-620.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer /S -NoNewWindow -Wait -PassThru; Remove-Item $Path\$Installer
+
+#Download, and Install WinSCP
+$Path = $env:TEMP; $Installer = "winSCP.exe"; Invoke-WebRequest "https://cdn.winscp.net/files/WinSCP-5.21.7-Setup.exe?secure=djMxrV1mJ9J0BPmGI_mMGQ==,1674854938" -OutFile $Path\$Installer
+
+cd $env:TEMP 
+.\winSCP.exe /VERYSILENT /NORESTART /ALLUSERS
+Remove-Item $Path\$Installer
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Configure PHP on IIS, Set Dorectories and Files

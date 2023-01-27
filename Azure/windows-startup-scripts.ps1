@@ -53,6 +53,9 @@ $Path = $env:TEMP; $Installer = "winSCP.exe"; Invoke-WebRequest "https://cdn.win
 cd $env:TEMP 
 .\winSCP.exe /VERYSILENT /NORESTART /ALLUSERS
 Remove-Item $Path\$Installer
+
+#Download, and Install Mozilla
+$Path = $env:TEMP; $Installer = "Mozilla.exe"; Invoke-WebRequest "https://cdn.stubdownloader.services.mozilla.com/builds/firefox-stub/en-US/win/38197a23831bc83a476213e0cb110d063d0a5a58d50d26b272dc771b7f335580/Firefox%20Installer.exe" -OutFile $Path\$Installer; Start-Process -FilePath $Path\$Installer -Args "/s" -Verb RunAs -Wait; 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Configure PHP on IIS, Set Dorectories and Files

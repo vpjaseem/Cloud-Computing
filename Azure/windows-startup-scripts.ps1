@@ -70,11 +70,18 @@ Add-WebConfiguration //DefaultDocument/Files -AtIndex 0 -Value @{Value="index.ph
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 
 #Download the Web App file and move to C:\inetpub\wwwroot\
-$Path = $env:TEMP; $Installer = "az-php-web-app.zip";Invoke-WebRequest "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\inetpub\wwwroot'; Remove-Item $Path\$Installer
-cd C:\inetpub\wwwroot\az-php-web-app-main
+$url = "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip"
+$output = "$home\Downloads\php-web-app.zip"
+$start_time = Get-Date
+Invoke-WebRequest -Uri $url -OutFile $output
+Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
+
+Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
+cd C:\inetpub\wwwroot\az-win-php-web-app-main
 Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
 cd C:\inetpub\wwwroot\
-Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-php-web-app-main\" -Force -Recurse
+Remove-Item -LiteralPath "C:\inetpub\wwwroot\az-win-php-web-app-main" -Force -Recurse
+
 
 #---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x---x
 ###OPTIONAL####Remove the '#' from below lines

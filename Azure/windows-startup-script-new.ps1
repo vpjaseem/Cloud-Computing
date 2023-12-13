@@ -51,8 +51,3 @@ Add-WebConfiguration //DefaultDocument/Files -AtIndex 0 -Value @{Value="index.ph
 
 #Download the Web App file and move to C:\inetpub\wwwroot\
 $Path = $env:TEMP; $Installer = "az-php-web-app.zip";Invoke-WebRequest "https://github.com/vpjaseem/az-php-web-app/archive/refs/heads/main.zip" -OutFile $Path\$Installer;Expand-Archive -LiteralPath $Path\$Installer -DestinationPath 'C:\inetpub\wwwroot'; Remove-Item $Path\$Installer
-cd C:\inetpub\wwwroot\az-php-web-app-main
-
-Expand-Archive -LiteralPath $home\Downloads\php-web-app.zip -DestinationPath 'C:\inetpub\wwwroot\'
-cd C:\inetpub\wwwroot\az-win-php-web-app-main
-Move-Item -Path .\* -Destination C:\inetpub\wwwroot\
